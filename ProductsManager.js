@@ -1,39 +1,60 @@
-class ProductsManager {
-  static quantity = 0;
-  static #prodcutos = [];
+class ProductManager {
+  static #products = [];
   create(data) {
-    const pro = {
-           id: ProductsManager.quantity === 0
-            ? 1 
-            : ProductsManager.#prodcutos[ProductsManager.quantity - 1].id +1,
-            type:data.type || "to do ",
-            date: data.date || new Date(),
-            text:data.text,
-            category :data.category 
-          
+    const product = {
+      id:
+        ProductManager.#products.length === 0
+          ? 1
+          : ProductManager.#products[ProductManager.#products.length - 1].id +
+            1,
+      title: data.title,
+      category: data.category,
+      photo: data.photo,
+      price: data.price,
+      stock: data.stock,
     };
-   
-    !data.text ? 
-    console.log("Ingrese Titulo") :  (
-
-    ProductsManager.#prodcutos.push(pro) &&
-    ProductsManager.quantity++);
-    
-    !data.category ? 
-   console.log("Ingrese Categoria") : (
-   ProductsManager.#prodcutos.push(pro) );
-    
+    ProductManager.#products.push(product);
+    console.log("Productos creados con exito  ");
   }
+
   read() {
-    return ProductsManager.#prodcutos;
- 
+    return ProductManager.#products;
+  }
 }
-}
+const gestorDeProductos = new ProductManager();
+const gestorDeProductos2 = new ProductManager();
+const gestorDeProductos3 = new ProductManager();
+const gestorDeProductos4 = new ProductManager();
 
-const prodcutos = new ProductsManager();
-prodcutos .create({ text: "Mi primer producto " });
-prodcutos .create({ text: "Mi segundo producto" });
-prodcutos .create({ text : "Mi tercer prodcuto  " });
-prodcutos .create({  });
+gestorDeProductos.create({
+  title: "zapatilla",
+  category: "calzado",
+  photo: "calzado.jpg",
+  price: 1000,
+  stock: 23,
+});
+gestorDeProductos2.create({
+  title: "Cartera",
+  category: "estetica",
+  photo: "cartera.jpg",
+  price: 500000,
+  stock: 4,
+});
 
-console.log(prodcutos.read());
+gestorDeProductos3.create({
+  title: "Medias",
+  category: "vestimenta",
+  photo: "media.jpg",
+  price: 2000,
+  stock:43,
+});
+
+gestorDeProductos4.create({
+  title: "Remeras",
+  category: "vestimenta",
+  photo: "remera.jpg",
+  price: 533,
+  stock:7,
+});
+
+console.log(gestorDeProductos.read());
